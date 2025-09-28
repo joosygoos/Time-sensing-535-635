@@ -8,6 +8,11 @@
 ## Introduction
 
 ## Design Goals
+Our goal is to replicate the time syncing system modeled in HAEST. This refers to a scalable, cost efficient, universal time synchronization system that solves the inherent latencies and shortcomings of current time-syncing protocols. 
+
+This system utilizes multiple sensing modalities (of the same type) attached to two low power microcontrollers (ESP-32s). The two low power devices (IoT devices) are responsible for timestamping sensed ambient events. These events are sent to a gateway device (Raspberry Pi) which is responsible for computing the time-sync of the IoT devices. The gateway correlates the timestamps of the event across the sensors in order to calculate clock offset and frequency drift between the two IoT devices. In order to minimize power consumption in time syncing, the IoT devices will utilize ESP-E2’s bluetooth module to stream data to the gateway device. 
+
+This approach to time synchronization allows for the addition of new sensing modalities into the same distributed system while minimizing calibration cost.
 
 ## Deliverables
 
