@@ -32,7 +32,11 @@ The following diagram shows our setup for calculating clock offsets from 2 ESP32
 * ESP-32 (2)
 * Raspberry Pi (1)
 * Sound Sensors (2)
+
 ## Team Roles
+Panashe: Hardware set-up, and resesearch
+Joshua: Software Development 
+Jenny: Algorithm design
 
 ## Project Timeline
 We have a rough estimate of tasks to do as well as when they should be done. While we don't have exact dates, we have estimates based on the month. The bullet points for each month are in order of which should be done first, though some tasks can be done at the same time independently:
