@@ -44,3 +44,5 @@ We have a rough estimate of tasks to do as well as when they should be done. Whi
 
 ## References
 1. HAEST: Harvesting Ambient Events to Synchronize Time across Heterogeneous IoT Devices
+2. Automated Synchronization of Driving Data Using Vibration and Steering Events
+3. Exploiting Smartphone Peripherals for Precise Time Synchronization
