@@ -18,6 +18,11 @@ This system demonstrates an receiver-to-receiver (R2R) syncing approach that uti
 This approach to time synchronization allows for the addition of new sensing modalities into the same distributed system while minimizing calibration cost.
 
 ## Deliverables
+1.	Enable synchronization using ambient audio events recorded by edge devices (ESP32).
+2.	Develop an audio-based time synchronization protocol with sub-millisecond accuracy.
+3.	Develop a resource efficient framework which uses the Raspberry Pi for synchronization tasks and the edge devices ESP32s for event recording only. 
+4.	(Optional: If there is more time) Integrate another sensor to prove scalability of the implemented solution
+
 
 ## System Design
 The following diagram shows our setup for calculating clock offsets from 2 ESP32's using a Raspberry Pi acting as the gateway device. The main role for the ESP32's is to collect and forward sensor data using 2 audio sensors on each ESP32. We will play some sound on a phone (like a door slamming) to simulate ambient sounds for the sensors. The Raspberry Pi collects the timestamped sensor data and calculates the clock drift of the devices. Following the HAEST paper (under [References](./README.md#References)), we predict to use a similar algorithm for identifying when 2 ESP32's detect the same event (sound from phone) using event detection and event matching algorithms.
