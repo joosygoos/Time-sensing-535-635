@@ -21,7 +21,7 @@ This approach to time synchronization allows for the addition of new sensing mod
 1.	Enable synchronization using ambient audio events recorded by edge devices (ESP32).
 2.	Develop an audio-based time synchronization protocol with sub-millisecond accuracy.
 3.	Develop a resource efficient framework which uses the Raspberry Pi for synchronization tasks and the edge devices ESP32s for event recording only. 
-4.	(Optional: If there is more time) Integrate another sensor to prove scalability of the implemented solution
+4.	(Optional: If there is more time) Integrate different sensors (other than audio) to prove scalability of the implemented solution
 
 
 ## System Design
@@ -34,8 +34,12 @@ The following diagram shows our setup for calculating clock offsets from 2 ESP32
 * Sound Sensors (2)
 
 ## Team Roles
+(Roles can change based on current needs)
+
 Panashe: Hardware set-up, and resesearch
+
 Joshua: Software Development 
+
 Jenny: Algorithm design
 
 ## Project Timeline
