@@ -6,6 +6,9 @@
 3. Joshua Gu
 
 ## Introduction
+The use of Internet of Things (IoT) devices has increased by 11.7% since 2024 [2]. Accurate time synchronization is essential for these devices to communicate effectively and record events reliably. IoT networks are increasingly heterogeneous due to differences in communication systems and sensing capabilities. Traditional network-based synchronization protocols, such as Network Time Protocols (NTP) [4] and IEEE 1588 [5], have high energy costs since they rely on frequent packet transmissions. Moreover, many IoT devices are resource-constrained, limiting their ability to continuously access central servers for synchronization. These limitations reduce the effectiveness of sensors in certain applications and environments [1][3].
+
+To address this, we propose an event-sensing-based synchronization solution. This reduces the energy requirements by eliminating the need for continuous communication with external gateways. Importantly, it requires no additional hardware, instead leveraging the inherent sensing capabilities of IoT devices to harness freely available ambient events (background events such as doors being slammed, people laughing, sudden pressure and light changes) [1][6][7].
 
 ## Design Goals
 Our goal is to replicate the time syncing system modeled in HAEST. This refers to a scalable, cost efficient, universal time synchronization system that solves the inherent latencies and shortcomings of current time-syncing protocols. 
@@ -45,6 +48,10 @@ We have a rough estimate of tasks to do as well as when they should be done. Whi
   * Presentations
 
 ## References
-1. HAEST: Harvesting Ambient Events to Synchronize Time across Heterogeneous IoT Devices
-2. Automated Synchronization of Driving Data Using Vibration and Steering Events
-3. Exploiting Smartphone Peripherals for Precise Time Synchronization
+1. A. Nasrullah and F. M. Anwar, "HAEST: Harvesting Ambient Events to Synchronize Time across Heterogeneous IoT Devices," 2024 IEEE 30th Real-Time and Embedded Technology and Applications Symposium (RTAS), Hong Kong, Hong Kong, 2024, pp. 265-279
+2.	Himanshu Singhvi. (2025). “ The Internet of Things in 2025: Trends, Business Models,  and  Future Directions for A Connected World.”  International Journal of Internet of Things (IJIOT), 3(1), 17-24
+3.	F. Mokaya, R. Lucas, H. Noh, and P. Zhang, “Burnout: A wearable system for unobtrusive skeletal muscle fatigue estimation,” 04 2016, pp. 1–12.
+4.	D. L. Mills, “Internet time synchronization: the network time protocol,” IEEE Transactions on Communications, vol. 39, no. 10, pp. 1482–1493, 1991.
+5.	K. Lee, J. C. Eidson, H. Weibel, and D. Mohl, “Ieee 1588-standard for a precision clock synchronization protocol for networked measurement and control systems,” in Conference on IEEE, vol. 1588, 2005, p. 2.
+6. Lex Fridman, Daniel E. Brown, William Angell, Irman Abdić, Bryan Reimer, Hae Young Noh, "Automated synchronization of driving data using vibration and steering events, Pattern Recognition Letters", Volume 75, 2016, Pages 9-15,
+7. S. S. Sandha, J. Noor, F. M. Anwar and M. Srivastava, "Exploiting Smartphone Peripherals for Precise Time Synchronization," 2019 IEEE International Symposium on Precision Clock Synchronization for Measurement, Control, and Communication (ISPCS), Portland, OR, USA, 2019, pp. 1-6,
