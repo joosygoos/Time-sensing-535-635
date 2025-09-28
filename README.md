@@ -21,7 +21,9 @@ The following diagram shows our setup for calculating clock offsets from 2 ESP32
 ![Figure 1](./images/figures/Figure_1.png)
 
 ## Hardware/Software Requirements
-
+* ESP-32 (2)
+* Raspberry Pi (1)
+* Sound Sensors (2)
 ## Team Roles
 
 ## Project Timeline
