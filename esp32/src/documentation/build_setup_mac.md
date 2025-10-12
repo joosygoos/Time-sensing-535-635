@@ -9,14 +9,17 @@ https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.ht
 
 ## Commands in order for building and flashing project
 
-1. idf.py set-target esp32
-2. idf.py menuconfig 
+### First, make sure you are in the directory of the project, here it is esp32/src
+1. `. $HOME/esp/esp-idf/export.sh` (for MacOS)
+2. idf.py set-target esp32
+3. idf.py menuconfig 
 
 **Note:** For Sparkfun ESP32 Thing, go to `Component config` --> `Hardware Settings` --> `Main XTAL Config` --> `Main XTAL frequency`, change `CONFIG_XTAL_FREQ` to 26 MHz, since that is what our boards use. If don't do this, monitor command shows garbage values
 
 1. idf.py build
 2. idf.py -p PORT flash 
 3. idf.py -p PORT monitor 
+4. To quit, use `Ctrl + ]`
 
 Linux PORT: `/dev/tty` 
 
