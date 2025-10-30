@@ -21,21 +21,3 @@ void time_sync_task_ble(void* arg) {
         vTaskDelay(5000 / portTICK_PERIOD_MS);
     }
 }
-
-// static void timer_sync_help() {
-//     printf("timer_sync_help() to be implemented\n");
-// }
-
-// static void timer_sync_help_alloc() {
-//     const esp_console_cmd_t cmd = {
-//         .command = "help",
-//         .help = "Lists all available commands for time synchronization",
-//         .hint = NULL,
-//         .func = &sensor_help,
-//     };
-//     ESP_ERROR_CHECK(esp_console_cmd_register(&cmd));
-// }
-
-// void time_sync_commands_alloc() {
-//     timer_sync_help_alloc();
-// }

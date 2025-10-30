@@ -6,5 +6,3 @@ Manages all time synchronization related tasks
 
 void time_sync_task_listen(void* arg);
 void time_sync_task_ble(void* arg);
-
-// void time_sync_commands_alloc();

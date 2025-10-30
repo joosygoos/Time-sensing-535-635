@@ -5,4 +5,3 @@ Manages all sensor related tasks
 */
 
 void sensor_task_listen(void* arg);
-// void sensor_commands_alloc();
