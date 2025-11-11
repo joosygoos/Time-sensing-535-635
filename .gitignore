@@ -1,0 +1,5 @@
+esp32/tutorial/hello_world/build/
+esp32/tutorial/hello_world/sdkconfig*
+esp32/src/build/
+esp32/src/sdkconfig*
+**/.vscode
