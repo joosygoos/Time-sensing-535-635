@@ -2,16 +2,26 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+/* ADC */
 #include "esp_adc/adc_oneshot.h" // For oneshot mode
 #include "esp_adc/adc_continuous.h" // For continuous mode
 #include "esp_adc/adc_cali.h" // For ADC calibration
 #include "esp_adc/adc_cali_scheme.h" // For ADC calibration scheme
 
-// #include <driver/adc.h>
+/* SNTP */
+#include "esp_sntp.h"   // for sntp
+#include "esp_netif_sntp.h"   // for sntp
 
+/* WIFI */
+#include "nvs_flash.h"
+#include "esp_netif.h"
+
+#include "esp_log.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <time.h>
+
+#include "time_sync.h"
 
 void sensor_task_listen(void* arg) {
     /*
@@ -24,6 +34,7 @@ void sensor_task_listen(void* arg) {
     // unsigned int id = (unsigned int) arg;
     // int core_id = esp_cpu_get_core_id();
 
+    /* ADC CONFIGURATION */
     adc_oneshot_unit_handle_t adc1_handle;  // oneshot mode, technically continuous polling better, but lets use oneshot for now
 
     adc_oneshot_unit_init_cfg_t init_config = {
@@ -38,8 +49,12 @@ void sensor_task_listen(void* arg) {
     };
     ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, ADC_CHANNEL_0, &config)); // ADC1, Channel 0 (GPIO 36)
 
-    while(true) {
+    /* UTC TIME CONFIGURATION */
+    printf("calling sync_to_unix_epoch\n");
+    sync_to_unix_epoch();
 
+    while(true) {
+        
         /* GET ADC INPUT VOLTAGE */
         int raw_value;
         ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, ADC_CHANNEL_0, &raw_value));
@@ -47,15 +62,17 @@ void sensor_task_listen(void* arg) {
         float voltage = (1.1 / 0.25) * ((float) raw_value / (4095));
 
         /* GET TIME */
-        struct timespec ts;
-        if (clock_gettime(CLOCK_REALTIME, &ts) == -1) {
-            perror("clock_gettime error occurred in sensor.c");
+        struct timeval tv; // Structure to hold seconds and microseconds
+        
+        // Get the current time in UTC with microsecond precision
+        if (gettimeofday(&tv, NULL) == -1) {
+            perror("gettimeofday failed");
+            return;
         }
+        double seconds_since_epoch = (double)tv.tv_sec + (double)tv.tv_usec / 1000000.0;
 
-        double seconds_since_epoch = (double)ts.tv_sec + (double)ts.tv_nsec / 1000000000.0;
+        printf("%f,%f\n", seconds_since_epoch, voltage);
 
-        printf("Raw ADC value is %d with input voltage %f at timestamp: %.9f\n", raw_value, voltage, seconds_since_epoch);
-        // printf("Sensor id %u listening on core %d\n", id, core_id);
-        vTaskDelay(500 / portTICK_PERIOD_MS);
+        vTaskDelay(1 / portTICK_PERIOD_MS);
     }
 }
