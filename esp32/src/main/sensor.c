@@ -16,6 +16,8 @@
 #include "nvs_flash.h"
 #include "esp_netif.h"
 
+#include "esp_task_wdt.h"
+
 #include "esp_log.h"
 #include <stdio.h>
 #include <stdbool.h>
@@ -53,16 +55,18 @@ void sensor_task_listen(void* arg) {
     printf("calling sync_to_unix_epoch\n");
     sync_to_unix_epoch();
 
+    unsigned int counter = 0;
+    int raw_value;
+    struct timeval tv; // Structure to hold seconds and microseconds
+
     while(true) {
         
         /* GET ADC INPUT VOLTAGE */
-        int raw_value;
         ESP_ERROR_CHECK(adc_oneshot_read(adc1_handle, ADC_CHANNEL_0, &raw_value));
 
         float voltage = (1.1 / 0.25) * ((float) raw_value / (4095));
 
         /* GET TIME */
-        struct timeval tv; // Structure to hold seconds and microseconds
         
         // Get the current time in UTC with microsecond precision
         if (gettimeofday(&tv, NULL) == -1) {
@@ -71,8 +75,15 @@ void sensor_task_listen(void* arg) {
         }
         double seconds_since_epoch = (double)tv.tv_sec + (double)tv.tv_usec / 1000000.0;
 
-        printf("%f,%f\n", seconds_since_epoch, voltage);
+        printf("%f,%f,", seconds_since_epoch, voltage);
 
         vTaskDelay(1 / portTICK_PERIOD_MS);
+
+        /* FLUSH PRINTF BUFFER AND KICK WATCHDOG */
+        counter++;
+        if(counter % 2000 == 0) {
+            printf("\n");
+            vTaskDelay(10 / portTICK_PERIOD_MS);
+        }
     }
 }
