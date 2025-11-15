@@ -19,6 +19,8 @@ void configure_ledc_pwm(void* arg)
 {
     /* 
     Current configuration: 2 second period, 50% duty cycle. In other words, on for 1 second, off for 1 second
+
+    GPIO 5 is for both blue LED and pwm
     */
 
     // Configure LEDC timer
